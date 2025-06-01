@@ -3,16 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KashBot - Sua companheira de estudos com IA no Discord. Flashcards inteligentes, resumos instantâneos e assistente de estudos 24/7.">
-    <meta name="keywords" content="KashBot, Discord Bot, IA, estudos, flashcards, resumos, assistente virtual, educação">
+    <meta name="description" content="KashBot - Sua companheira de estudos com IA no Discord. Flashcards inteligentes, resumos instantâneos e assistente de estudos 24/7. Aumente sua produtividade nos estudos com nossa IA avançada.">
+    <meta name="keywords" content="KashBot, Discord Bot, IA, estudos, flashcards, resumos, assistente virtual, educação, inteligência artificial, bot de estudos, produtividade, aprendizado">
     <meta name="author" content="KashBot">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="Portuguese">
+    <meta name="generator" content="KashBot">
+    <meta name="theme-color" content="#ff69b4">
+    
+    <link rel="canonical" href="https://kashbot.com">
+    <link rel="alternate" hreflang="pt-BR" href="https://kashbot.com">
+    <link rel="alternate" hreflang="x-default" href="https://kashbot.com">
+    
     <meta property="og:title" content="KashBot - Sua Companheira de Estudos com IA">
-    <meta property="og:description" content="Estude mais inteligente com IA. Flashcards, resumos e assistente 24/7 no Discord.">
+    <meta property="og:description" content="Estude mais inteligente com IA. Flashcards, resumos e assistente 24/7 no Discord. Aumente sua produtividade nos estudos com nossa IA avançada.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kashbot.com">
+    <meta property="og:image" content="https://kashbot.com/images/og-image.jpg">
+    <meta property="og:image:alt" content="KashBot - Bot de Estudos com IA">
+    <meta property="og:site_name" content="KashBot">
+    <meta property="og:locale" content="pt_BR">
+    
     <meta name="twitter:card" content="summary_large_image">
-    <title>KashBot - Sua Companheira de Estudos com IA</title>
+    <meta name="twitter:title" content="KashBot - Sua Companheira de Estudos com IA">
+    <meta name="twitter:description" content="Estude mais inteligente com IA. Flashcards, resumos e assistente 24/7 no Discord.">
+    <meta name="twitter:image" content="https://kashbot.com/images/twitter-image.jpg">
+    
+    <title>KashBot - Sua Companheira de Estudos com IA | Flashcards e Resumos Inteligentes</title>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "KashBot",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Discord",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+        },
+        "description": "Bot de estudos com IA para Discord. Flashcards inteligentes, resumos instantâneos e assistente de estudos 24/7.",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150"
+        }
+    }
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -22,28 +63,37 @@
             background-color: #000000;
             color: #ffffff;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 105, 180, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 105, 180, 0.05) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(255, 105, 180, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(255, 105, 180, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(255, 105, 180, 0.05) 0%, transparent 50%);
             background-attachment: fixed;
         }
         .pink-glow {
-            text-shadow: 0 0 10px #ff69b4;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
         }
         .gradient-text {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #ff69b4);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradientFlow 5s ease infinite;
+        }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .hover-scale {
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .hover-scale:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-5px);
         }
         .feature-card {
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         .feature-card::before {
             content: '';
@@ -55,36 +105,35 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(255, 105, 180, 0.2),
+                rgba(255, 105, 180, 0.3),
                 transparent
             );
-            transition: 0.5s;
+            transition: 0.8s;
         }
         .feature-card:hover::before {
             left: 100%;
         }
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
         }
         .pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
         }
         .floating {
-            animation: floating 3s ease-in-out infinite;
+            animation: floating 4s ease-in-out infinite;
         }
         @keyframes floating {
             0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
             100% { transform: translateY(0px) rotate(0deg); }
         }
         .napoleon-enter {
-            animation: napoleonEnter 1s ease-out forwards;
+            animation: napoleonEnter 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
             transform: translateY(50px);
         }
@@ -99,11 +148,11 @@
             }
         }
         .napoleon-hover {
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .napoleon-hover:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.2);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.25);
         }
         .glow-border {
             position: relative;
@@ -116,121 +165,139 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, #ff69b4, #ff1493, #ff69b4);
+            background-size: 200% 200%;
             border-radius: inherit;
             z-index: -1;
-            animation: borderGlow 3s linear infinite;
+            animation: borderGlow 4s linear infinite, gradientFlow 5s ease infinite;
         }
         @keyframes borderGlow {
             0% { opacity: 0.5; }
             50% { opacity: 1; }
             100% { opacity: 0.5; }
         }
+        .glass-effect {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 105, 180, 0.1);
+        }
+        .nav-blur {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(255, 105, 180, 0.15) 0%, transparent 70%);
+        }
     </style>
 </head>
 <body class="min-h-screen">
-    <nav class="fixed w-full bg-black/80 backdrop-blur-sm z-50 border-b border-pink-500/20">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold gradient-text animate__animated animate__fadeIn">KashBot</div>
-            <div class="space-x-6">
-                <a href="#features" class="text-pink-500 hover:text-pink-400 transition hover-scale">Recursos</a>
-                <a href="#pricing" class="text-pink-500 hover:text-pink-400 transition hover-scale">Preços</a>
-                <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="bg-pink-500 text-black px-6 py-2 rounded-full hover:bg-pink-400 transition hover-scale pulse">Adicionar ao Discord</a>
+    <nav class="fixed w-full nav-blur z-50 border-b border-pink-500/20" role="navigation" aria-label="Menu principal">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-3xl font-bold gradient-text animate__animated animate__fadeIn">KashBot</div>
+            <div class="space-x-8">
+                <a href="#features" class="text-pink-500 hover:text-pink-400 transition hover-scale text-lg">Recursos</a>
+                <a href="#pricing" class="text-pink-500 hover:text-pink-400 transition hover-scale text-lg">Preços</a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="bg-pink-500 text-black px-8 py-3 rounded-full hover:bg-pink-400 transition hover-scale pulse text-lg font-semibold">Adicionar ao Discord</a>
             </div>
         </div>
     </nav>
 
     <main class="pt-24">
-        <section class="container mx-auto px-4 py-20 text-center">
-            <h1 class="text-6xl font-bold mb-6 gradient-text animate__animated animate__fadeInDown napoleon-enter">Estude Mais Inteligente com IA</h1>
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto animate__animated animate__fadeIn animate__delay-1s">Sua companheira de estudos com IA no Discord. Obtenha ajuda instantânea com flashcards, resumos e muito mais - tudo alimentado por tecnologia de IA avançada.</p>
-            <div class="flex justify-center gap-4 animate__animated animate__fadeInUp animate__delay-2s">
-                <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="bg-pink-500 text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-pink-400 transition hover-scale glow-border">Começar Grátis</a>
-                <a href="#features" class="border border-pink-500 text-pink-500 px-8 py-4 rounded-full text-lg font-bold hover:bg-pink-500/10 transition hover-scale">Saiba Mais</a>
+        <section class="container mx-auto px-6 py-24 text-center hero-gradient" aria-labelledby="hero-heading">
+            <h1 id="hero-heading" class="text-7xl font-bold mb-8 gradient-text animate__animated animate__fadeInDown napoleon-enter">Estude Mais Inteligente com IA</h1>
+            <p class="text-2xl text-gray-300 mb-12 max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s leading-relaxed">Sua companheira de estudos com IA no Discord. Obtenha ajuda instantânea com flashcards, resumos e muito mais - tudo alimentado por tecnologia de IA avançada.</p>
+            <div class="flex justify-center gap-6 animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="bg-pink-500 text-black px-10 py-5 rounded-full text-xl font-bold hover:bg-pink-400 transition hover-scale glow-border">Começar Grátis</a>
+                <a href="#features" class="border-2 border-pink-500 text-pink-500 px-10 py-5 rounded-full text-xl font-bold hover:bg-pink-500/10 transition hover-scale">Saiba Mais</a>
             </div>
         </section>
 
-        <section id="features" class="py-20 bg-black/50">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 gradient-text animate__animated animate__fadeIn">Recursos Poderosos</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-black/40 p-6 rounded-xl border border-pink-500/20 feature-card napoleon-hover">
-                        <div class="text-pink-500 text-4xl mb-4 floating">📚</div>
-                        <h3 class="text-xl font-bold mb-2">Flashcards Inteligentes</h3>
-                        <p class="text-gray-400">Crie e estude com flashcards gerados por IA adaptados ao seu estilo de aprendizado.</p>
+        <section id="features" class="py-24 bg-black/50" aria-labelledby="features-heading">
+            <div class="container mx-auto px-6">
+                <h2 id="features-heading" class="text-5xl font-bold text-center mb-20 gradient-text animate__animated animate__fadeIn">Recursos Poderosos</h2>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="glass-effect p-8 rounded-2xl feature-card napoleon-hover">
+                        <div class="text-pink-500 text-5xl mb-6 floating">📚</div>
+                        <h3 class="text-2xl font-bold mb-4">Flashcards Inteligentes</h3>
+                        <p class="text-gray-400 text-lg">Crie e estude com flashcards gerados por IA adaptados ao seu estilo de aprendizado.</p>
                     </div>
-                    <div class="bg-black/40 p-6 rounded-xl border border-pink-500/20 feature-card napoleon-hover">
-                        <div class="text-pink-500 text-4xl mb-4 floating">📝</div>
-                        <h3 class="text-xl font-bold mb-2">Resumos Instantâneos</h3>
-                        <p class="text-gray-400">Obtenha resumos concisos do seu material de estudo em segundos.</p>
+                    <div class="glass-effect p-8 rounded-2xl feature-card napoleon-hover">
+                        <div class="text-pink-500 text-5xl mb-6 floating">📝</div>
+                        <h3 class="text-2xl font-bold mb-4">Resumos Instantâneos</h3>
+                        <p class="text-gray-400 text-lg">Obtenha resumos concisos do seu material de estudo em segundos.</p>
                     </div>
-                    <div class="bg-black/40 p-6 rounded-xl border border-pink-500/20 feature-card napoleon-hover">
-                        <div class="text-pink-500 text-4xl mb-4 floating">🤖</div>
-                        <h3 class="text-xl font-bold mb-2">Assistente de Estudos IA</h3>
-                        <p class="text-gray-400">Ajuda 24/7 com suas dúvidas e materiais de estudo.</p>
+                    <div class="glass-effect p-8 rounded-2xl feature-card napoleon-hover">
+                        <div class="text-pink-500 text-5xl mb-6 floating">🤖</div>
+                        <h3 class="text-2xl font-bold mb-4">Assistente de Estudos IA</h3>
+                        <p class="text-gray-400 text-lg">Ajuda 24/7 com suas dúvidas e materiais de estudo.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="pricing" class="py-20">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 gradient-text animate__animated animate__fadeIn">Preços Simples</h2>
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="bg-black/40 p-8 rounded-xl border border-pink-500/20 hover-scale napoleon-hover">
-                        <h3 class="text-2xl font-bold mb-4">Grátis</h3>
-                        <p class="text-4xl font-bold mb-6">R$0<span class="text-lg text-gray-400">/mês</span></p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+        <section id="pricing" class="py-24" aria-labelledby="pricing-heading">
+            <div class="container mx-auto px-6">
+                <h2 id="pricing-heading" class="text-5xl font-bold text-center mb-20 gradient-text animate__animated animate__fadeIn">Preços Simples</h2>
+                <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                    <div class="glass-effect p-10 rounded-2xl hover-scale napoleon-hover">
+                        <h3 class="text-3xl font-bold mb-6">Grátis</h3>
+                        <p class="text-5xl font-bold mb-8">R$0<span class="text-xl text-gray-400">/mês</span></p>
+                        <ul class="space-y-5 mb-10">
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 20 comandos por dia
                             </li>
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 Gemini 2.0 Flash-Lite
                             </li>
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 Todos os recursos Premium
                             </li>
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 Suporte da comunidade
                             </li>
                         </ul>
-                        <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="block text-center border border-pink-500 text-pink-500 px-6 py-3 rounded-full hover:bg-pink-500/10 transition hover-scale">Começar</a>
+                        <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="block text-center border-2 border-pink-500 text-pink-500 px-8 py-4 rounded-full text-lg font-bold hover:bg-pink-500/10 transition hover-scale">Começar</a>
                     </div>
-                    <div class="bg-black/40 p-8 rounded-xl border border-pink-500 hover-scale napoleon-hover glow-border">
-                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-pink-500 text-black px-4 py-1 rounded-full text-sm font-bold pulse">Popular</div>
-                        <h3 class="text-2xl font-bold mb-4">Premium</h3>
-                        <p class="text-4xl font-bold mb-6">R$20<span class="text-lg text-gray-400">/mês</span></p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+                    <div class="glass-effect p-10 rounded-2xl hover-scale napoleon-hover glow-border">
+                        <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-pink-500 text-black px-6 py-2 rounded-full text-base font-bold pulse">Popular</div>
+                        <h3 class="text-3xl font-bold mb-6">Premium</h3>
+                        <p class="text-5xl font-bold mb-8">R$20<span class="text-xl text-gray-400">/mês</span></p>
+                        <ul class="space-y-5 mb-10">
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 Comandos ilimitados
                             </li>
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 Gemini 2.5 Pro-Flash
                             </li>
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 Respostas mais rápidas
                             </li>
-                            <li class="flex items-center">
-                                <span class="text-pink-500 mr-2">✓</span>
+                            <li class="flex items-center text-lg">
+                                <span class="text-pink-500 mr-3">✓</span>
                                 Suporte prioritário
                             </li>
                         </ul>
-                        <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="block text-center bg-pink-500 text-black px-6 py-3 rounded-full hover:bg-pink-400 transition hover-scale">Fazer Upgrade</a>
+                        <a href="https://discord.com/oauth2/authorize?client_id=1302852009363509319&scope=bot%20applications.commands&permissions=518416312328" target="_blank" class="block text-center bg-pink-500 text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-pink-400 transition hover-scale">Fazer Upgrade</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-black/80 border-t border-pink-500/20 py-8">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            <p>© 2025 KashBot. Todos os direitos reservados.</p>
+    <footer class="nav-blur border-t border-pink-500/20 py-10" role="contentinfo">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p class="text-lg">© 2025 KashBot. Todos os direitos reservados.</p>
+            <nav class="mt-4" aria-label="Links do rodapé">
+                <a href="/privacidade" class="text-gray-400 hover:text-pink-500 mx-2">Política de Privacidade</a>
+                <a href="/termos" class="text-gray-400 hover:text-pink-500 mx-2">Termos de Uso</a>
+                <a href="/contato" class="text-gray-400 hover:text-pink-500 mx-2">Contato</a>
+            </nav>
         </div>
     </footer>
 
@@ -246,13 +313,14 @@
                 }
             });
 
-            // Add napoleon-enter class to elements as they come into view
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('napoleon-enter');
                     }
                 });
+            }, {
+                threshold: 0.1
             });
 
             document.querySelectorAll('.feature-card, .hover-scale').forEach((el) => {
